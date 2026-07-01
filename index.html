@@ -161,6 +161,46 @@
     font-family: inherit;
   }
   .back-link:hover { color: var(--forest); }
+  .category-row-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .cat-label-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1.5px solid #e3ddd0;
+    background: transparent;
+    font-size: 14px;
+    color: #55665d;
+    padding: 4px 2px;
+    font-family: inherit;
+  }
+  .cat-label-input:focus { outline: none; border-color: var(--blush); }
+  .remove-btn {
+    background: none;
+    border: none;
+    color: #b0a89a;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+  .remove-btn:hover { color: #b5453a; }
+  .add-btn {
+    background: transparent;
+    border: 1.5px dashed #c8c0b0;
+    color: #55665d;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    font-family: inherit;
+  }
+  .add-btn:hover { border-color: var(--blush); color: var(--forest); }
 </style>
 </head>
 <body>
@@ -183,20 +223,23 @@ const patterns = [
   { name: "Passivität", stmt: "Um meine Finanzen kümmert sich eigentlich jemand anderes (Partner, Bank, Steuerberater).", meaning: "Wenn jemand anderes „sich kümmert“, fehlt oft der eigene Überblick — das kann später zum Risiko werden.", reframe: "Der eigene Überblick über die eigenen Finanzen ist ein Werkzeug für Unabhängigkeit — Schritt für Schritt aufbaubar." }
 ];
 
-const expenseFields = [
-  { key: "wohnen", label: "Wohnen & Nebenkosten" },
-  { key: "lebenshaltung", label: "Lebenshaltung & Essen" },
-  { key: "mobilitaet", label: "Mobilität" },
-  { key: "versicherungen", label: "Versicherungen" },
-  { key: "freizeit", label: "Freizeit, Abos & Shopping" },
-  { key: "sonstiges", label: "Sonstiges / „weiß ich gar nicht so genau“" }
-];
+function defaultCategories() {
+  return [
+    { id: "c0", label: "Wohnen & Nebenkosten", amount: "" },
+    { id: "c1", label: "Lebenshaltung & Essen", amount: "" },
+    { id: "c2", label: "Mobilität", amount: "" },
+    { id: "c3", label: "Versicherungen", amount: "" },
+    { id: "c4", label: "Freizeit, Abos & Shopping", amount: "" },
+    { id: "c5", label: "Sonstiges / „weiß ich gar nicht so genau“", amount: "" }
+  ];
+}
 
 let state = {
   screen: 0,
   selected: new Set(),
   income: "",
-  expenses: {}
+  categories: defaultCategories(),
+  nextCategoryId: 6
 };
 
 function render() {
@@ -280,17 +323,21 @@ function renderMoney(app) {
   app.innerHTML = `
     ${backLink(2)}
     <div class="headline" style="font-size:24px;">Deine Zahlen</div>
-    <div class="subhead">Nirgends zeigt sich Money Mindset deutlicher als in den eigenen Zahlen. Kurzer Check — grobe Schätzung reicht.</div>
+    <div class="subhead">Nirgends zeigt sich Money Mindset deutlicher als in den eigenen Zahlen. Kurzer Check — grobe Schätzung reicht. Passe die Kategorien gern an deine Situation an.</div>
     <div class="field">
       <label>Monatliches Nettoeinkommen</label>
       <input type="number" min="0" placeholder="z.B. 2500" id="income-input" value="${state.income}" oninput="updateIncome(this.value)">
     </div>
-    ${expenseFields.map(f => `
-      <div class="field">
-        <label>${f.label}</label>
-        <input type="number" min="0" placeholder="0" id="expense-${f.key}" value="${state.expenses[f.key] || ''}" oninput="updateExpense('${f.key}', this.value)">
+    ${state.categories.map(c => `
+      <div class="field category-row">
+        <div class="category-row-top">
+          <input type="text" class="cat-label-input" placeholder="Kategorie" value="${c.label}" oninput="updateCategoryLabel('${c.id}', this.value)">
+          <button class="remove-btn" title="Kategorie entfernen" onclick="removeCategory('${c.id}')">×</button>
+        </div>
+        <input type="number" min="0" placeholder="0" id="expense-${c.id}" value="${c.amount}" oninput="updateCategoryAmount('${c.id}', this.value)">
       </div>
     `).join("")}
+    <button class="add-btn" onclick="addCategory()">+ Kategorie hinzufügen</button>
     <div class="calc-box">
       <div class="label">Rest am Monatsende</div>
       <div class="big" id="rest-display">${calcRest()} €</div>
@@ -304,14 +351,28 @@ function updateIncome(v) {
   const el = document.getElementById("rest-display");
   if (el) el.textContent = calcRest() + " €";
 }
-function updateExpense(key, v) {
-  state.expenses[key] = v;
+function updateCategoryAmount(id, v) {
+  const cat = state.categories.find(c => c.id === id);
+  if (cat) cat.amount = v;
   const el = document.getElementById("rest-display");
   if (el) el.textContent = calcRest() + " €";
 }
+function updateCategoryLabel(id, v) {
+  const cat = state.categories.find(c => c.id === id);
+  if (cat) cat.label = v;
+}
+function addCategory() {
+  state.categories.push({ id: "c" + state.nextCategoryId, label: "", amount: "" });
+  state.nextCategoryId++;
+  render();
+}
+function removeCategory(id) {
+  state.categories = state.categories.filter(c => c.id !== id);
+  render();
+}
 
 function sumExpenses() {
-  return expenseFields.reduce((sum, f) => sum + (parseFloat(state.expenses[f.key]) || 0), 0);
+  return state.categories.reduce((sum, c) => sum + (parseFloat(c.amount) || 0), 0);
 }
 function calcRest() {
   const income = parseFloat(state.income) || 0;
@@ -321,13 +382,14 @@ function calcRest() {
 function renderMoneyResult(app) {
   const income = parseFloat(state.income) || 0;
   const rest = calcRest();
-  const sonstiges = parseFloat(state.expenses.sonstiges) || 0;
+  const sonstigesCat = state.categories.find(c => c.label.toLowerCase().includes("sonstig"));
+  const sonstiges = sonstigesCat ? (parseFloat(sonstigesCat.amount) || 0) : 0;
   const sonstigesPct = income > 0 ? (sonstiges / income) * 100 : 0;
   const restPct = income > 0 ? (rest / income) * 100 : 0;
 
   let hint = "";
-  if (sonstigesPct >= 10) {
-    hint = `Auffällig: „Sonstiges“ macht bei dir ${Math.round(sonstigesPct)}% deiner Ausgaben aus. Genau hier versteckt sich bei vielen das größte Sparpotenzial — nicht weil schlecht gewirtschaftet wird, sondern weil dieser Posten selten bewusst wahrgenommen wird.`;
+  if (sonstigesCat && sonstigesPct >= 10) {
+    hint = `Auffällig: „${sonstigesCat.label}“ macht bei dir ${Math.round(sonstigesPct)}% deiner Ausgaben aus. Genau hier versteckt sich bei vielen das größte Sparpotenzial — nicht weil schlecht gewirtschaftet wird, sondern weil dieser Posten selten bewusst wahrgenommen wird.`;
   } else if (rest < 0) {
     hint = `Bei dir bleibt rechnerisch gerade nichts übrig oder es fehlt sogar etwas. Das ist eine Zahl, kein Urteil — sie zeigt nur, wo ein genauerer Blick sich lohnen könnte.`;
   } else if (restPct >= 10) {
@@ -374,7 +436,7 @@ function renderSummary(app) {
 
 function goTo(screen) { state.screen = screen; render(); }
 function reset() {
-  state = { screen: 0, selected: new Set(), income: "", expenses: {} };
+  state = { screen: 0, selected: new Set(), income: "", categories: defaultCategories(), nextCategoryId: 6 };
   render();
 }
 
