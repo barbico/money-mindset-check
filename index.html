@@ -5,33 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Money Mindset Check — Finbrave</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --forest: #2D4A3E;
+    --sage: #4A7C6F;
+    --mist: #8FB5AC;
     --linen: #F5F0E8;
+    --sand: #E8DFD0;
+    --cream: #FAF7F2;
+    --gold: #B08D57;
+    --gold-lt: #D4B483;
     --blush: #C4957A;
-    --forest-soft: #3d5f50;
+    --blush-lt: #E8C4AE;
+    --ink: #1C1917;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, system-ui, sans-serif;
+    --mono: 'DM Mono', 'SF Mono', monospace;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: var(--linen);
-    color: var(--forest);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
   }
-  h1, h2, .headline {
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-weight: 600;
-    color: var(--forest);
-  }
   .card {
-    background: #fff;
+    background: var(--linen);
     border-radius: 20px;
     max-width: 640px;
     width: 100%;
@@ -40,10 +45,107 @@
     animation: fadeIn 0.4s ease;
   }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  .headline { font-size: 32px; margin: 0 0 16px; }
-  .subhead { font-size: 15px; margin: 0 0 24px; color: #55665d; line-height: 1.5; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+  .hook {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    color: var(--forest);
+    line-height: 1.25;
+    margin: 0 0 0.7rem;
+  }
+  .hook .accent { color: var(--blush); }
+  .headline {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-style: normal;
+    color: var(--forest);
+    font-size: 1.6rem;
+    margin: 0 0 0.9rem;
+  }
+  .sub {
+    font-size: 0.95rem;
+    color: var(--ink);
+    opacity: 0.72;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+  }
+
+  .stepper { display: flex; gap: 0.5rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
+  .stepper-chip {
+    flex: 1;
+    min-width: 92px;
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+  }
+  .stepper-chip .chip-icon { font-size: 1.25rem; display: block; margin-bottom: 0.25rem; }
+  .stepper-chip .chip-label { font-size: 0.72rem; color: var(--ink); opacity: 0.75; font-weight: 500; }
+
+  .insight-card {
+    border-left: 3px solid var(--gold);
+    background: rgba(176,141,87,0.08);
+    border-radius: 0 12px 12px 0;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .insight-card.accent-blush { border-left-color: var(--blush); background: rgba(196,149,122,0.09); }
+  .insight-card.accent-sage { border-left-color: var(--sage); background: rgba(74,124,111,0.08); }
+  .insight-label {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .insight-card.accent-blush .insight-label { color: var(--blush); }
+  .insight-card.accent-sage .insight-label { color: var(--sage); }
+  .insight-body { font-size: 0.89rem; line-height: 1.65; color: var(--ink); opacity: 0.88; }
+  .insight-body strong { color: var(--forest); }
+
+  .quote-card {
+    background: var(--forest);
+    color: var(--linen);
+    border-radius: 16px;
+    padding: 1.6rem 1.8rem;
+    margin: 1.2rem 0;
+  }
+  .quote-card .context {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.6rem;
+  }
+  .quote-card blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .quote-card blockquote strong { color: var(--gold-lt); font-style: normal; }
+
   .item {
-    border: 1.5px solid #e3ddd0;
+    border: 1.5px solid var(--sand);
     border-radius: 14px;
     padding: 16px 18px;
     margin-bottom: 10px;
@@ -54,23 +156,17 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    background: var(--cream);
   }
   .item:hover { border-color: var(--blush); }
-  .item.selected {
-    background: var(--forest);
-    color: #fff;
-    border-color: var(--forest);
-  }
-  .item .dot {
-    width: 18px; height: 18px; min-width: 18px;
-    border-radius: 50%;
-    border: 2px solid #c8c0b0;
-    margin-top: 2px;
-  }
-  .item.selected .dot { border-color: #fff; background: var(--blush); }
+  .item.selected { background: var(--forest); color: var(--linen); border-color: var(--forest); }
+  .item .dot { width: 18px; height: 18px; min-width: 18px; border-radius: 50%; border: 2px solid #c8c0b0; margin-top: 2px; }
+  .item.selected .dot { border-color: var(--linen); background: var(--blush); }
+  .item.none-item { border-style: dashed; margin-top: 8px; }
+
   .btn {
     background: var(--forest);
-    color: #fff;
+    color: var(--linen);
     border: none;
     padding: 14px 28px;
     border-radius: 30px;
@@ -78,129 +174,110 @@
     cursor: pointer;
     width: 100%;
     margin-top: 20px;
-    font-family: inherit;
+    font-family: var(--sans);
+    font-weight: 500;
     transition: background 0.15s ease;
   }
-  .btn:hover { background: var(--forest-soft); }
-  .btn.secondary {
-    background: transparent;
-    color: var(--forest);
-    border: 1.5px solid var(--forest);
-  }
-  .progress {
-    height: 4px;
-    background: #e3ddd0;
-    border-radius: 4px;
-    margin-bottom: 28px;
-    overflow: hidden;
-  }
+  .btn:hover { background: var(--sage); }
+  .btn.secondary { background: transparent; color: var(--forest); border: 1.5px solid var(--forest); }
+
+  .progress { height: 4px; background: var(--sand); border-radius: 4px; margin-bottom: 28px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--blush); transition: width 0.3s ease; }
+
   .pattern-card {
-    background: var(--linen);
+    background: var(--cream);
     border-left: 4px solid var(--blush);
     border-radius: 10px;
     padding: 16px 18px;
     margin-bottom: 14px;
   }
-  .pattern-card .name { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+  .pattern-card .name { font-weight: 700; font-size: 16px; margin-bottom: 6px; color: var(--forest); }
   .pattern-card .meaning { font-size: 14.5px; margin-bottom: 8px; line-height: 1.5; }
-  .pattern-card .reframe { font-size: 14.5px; font-style: italic; color: #3d5f50; line-height: 1.5; }
+  .pattern-card .reframe { font-size: 14.5px; font-style: italic; color: var(--sage); line-height: 1.5; }
+
   .note {
-    background: #fbf7ee;
-    border: 1px solid #ecdfc8;
+    background: var(--cream);
+    border: 1px solid var(--sand);
     border-radius: 10px;
     padding: 14px 16px;
     font-size: 14px;
     line-height: 1.5;
     margin: 16px 0;
   }
+
   .field { margin-bottom: 14px; }
-  .field label { display: block; font-size: 14px; margin-bottom: 6px; color: #55665d; }
-  .field input {
+  .field label { display: block; font-size: 14px; margin-bottom: 6px; color: var(--ink); opacity: 0.7; }
+  .field input, .field textarea {
     width: 100%;
     padding: 12px 14px;
     border-radius: 10px;
-    border: 1.5px solid #e3ddd0;
+    border: 1.5px solid var(--sand);
     font-size: 16px;
-    font-family: inherit;
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
   }
-  .field input:focus { outline: none; border-color: var(--blush); }
-  .field .suffix { font-size: 13px; color: #8a9089; }
-  .calc-box {
-    background: var(--forest);
-    color: #fff;
-    border-radius: 14px;
-    padding: 20px;
-    margin-top: 20px;
-    text-align: center;
-  }
-  .calc-box .big { font-family: "Cormorant Garamond", serif; font-size: 36px; font-weight: 700; }
-  .calc-box .label { font-size: 13px; opacity: 0.85; margin-bottom: 4px; }
-  .disclaimer {
-    font-size: 11.5px;
-    color: #8a9089;
-    line-height: 1.5;
-    margin-top: 24px;
-    border-top: 1px solid #eee;
-    padding-top: 14px;
-  }
-  .summary-line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14.5px; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--blush); }
+  .field textarea { font-size: 14.5px; resize: vertical; }
+
+  .calc-box { background: var(--forest); color: var(--linen); border-radius: 14px; padding: 20px; margin-top: 20px; text-align: center; }
+  .calc-box .big { font-family: var(--serif); font-size: 36px; font-weight: 700; }
+  .calc-box .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 6px; }
+
+  .disclaimer { font-size: 11.5px; color: var(--ink); opacity: 0.55; line-height: 1.5; margin-top: 24px; border-top: 1px solid var(--sand); padding-top: 14px; }
+  .summary-line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--sand); font-size: 14.5px; gap: 16px; }
   .link { color: var(--blush); text-decoration: none; font-weight: 600; }
   .center { text-align: center; }
+
   .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    color: #8a9089;
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 18px;
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: inherit;
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--ink); opacity: 0.5;
+    font-size: 14px; cursor: pointer; margin-bottom: 18px;
+    background: none; border: none; padding: 0; font-family: var(--sans);
   }
-  .back-link:hover { color: var(--forest); }
-  .category-row-top {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
+  .back-link:hover { opacity: 0.9; color: var(--forest); }
+
+  .category-row-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
   .cat-label-input {
-    flex: 1;
-    border: none;
-    border-bottom: 1.5px solid #e3ddd0;
-    background: transparent;
-    font-size: 14px;
-    color: #55665d;
-    padding: 4px 2px;
-    font-family: inherit;
+    flex: 1; min-width: 120px; border: none; border-bottom: 1.5px solid var(--sand);
+    background: transparent; font-size: 14px; color: var(--ink); padding: 4px 2px; font-family: var(--sans);
   }
   .cat-label-input:focus { outline: none; border-color: var(--blush); }
-  .remove-btn {
-    background: none;
-    border: none;
-    color: #b0a89a;
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0 4px;
+  .type-toggle { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; }
+  .type-pill {
+    font-size: 11.5px; padding: 4px 9px; border-radius: 20px; border: 1px solid var(--sand);
+    background: var(--cream); color: var(--ink); opacity: 0.6; cursor: pointer; font-family: var(--sans); white-space: nowrap;
   }
+  .type-pill.active { background: var(--blush); color: var(--linen); border-color: var(--blush); opacity: 1; }
+  .type-pill.locked { cursor: default; display: inline-block; }
+  .remove-btn { background: none; border: none; color: #b0a89a; font-size: 22px; line-height: 1; cursor: pointer; padding: 0 4px; }
   .remove-btn:hover { color: #b5453a; }
   .add-btn {
-    background: transparent;
-    border: 1.5px dashed #c8c0b0;
-    color: #55665d;
-    border-radius: 12px;
-    padding: 10px;
-    width: 100%;
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 16px;
-    font-family: inherit;
+    background: transparent; border: 1.5px dashed var(--sand); color: var(--ink); opacity: 0.7;
+    border-radius: 12px; padding: 10px; width: 100%; font-size: 14px; cursor: pointer; margin-bottom: 16px; font-family: var(--sans);
   }
-  .add-btn:hover { border-color: var(--blush); color: var(--forest); }
+  .add-btn:hover { border-color: var(--blush); opacity: 1; color: var(--forest); }
+
+  .compare-card { background: var(--sand); border-radius: 14px; padding: 1.25rem 1.4rem; margin: 1.1rem 0; }
+  .compare-title { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--forest); margin-bottom: 0.25rem; }
+  .compare-sub { font-size: 0.79rem; color: var(--ink); opacity: 0.65; margin-bottom: 0.9rem; line-height: 1.5; }
+  .compare-head-row, .compare-row {
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 0.5rem; align-items: center;
+    padding: 0.55rem 0; border-bottom: 1px solid rgba(28,25,23,0.08);
+  }
+  .compare-head-row { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); opacity: 0.5; }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row .cat-name { font-size: 0.85rem; color: var(--ink); }
+  .compare-row .target-val { font-size: 0.85rem; color: var(--ink); opacity: 0.6; }
+  .compare-row .own-val { font-size: 0.92rem; font-weight: 700; color: var(--forest); }
+  .compare-row .own-sub { display: block; font-size: 0.66rem; font-weight: 400; opacity: 0.55; color: var(--ink); margin-top: 1px; }
+
+  .bucket-list { margin: 0.5rem 0 0; }
+  .bucket-item { display: flex; gap: 0.7rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(28,25,23,0.08); align-items: flex-start; }
+  .bucket-item:last-child { border-bottom: none; }
+  .bucket-icon { font-size: 1.1rem; line-height: 1.5; }
+  .bucket-text { font-size: 0.85rem; line-height: 1.55; color: var(--ink); opacity: 0.85; }
+  .bucket-text strong { color: var(--forest); }
 </style>
 </head>
 <body>
@@ -225,22 +302,38 @@ const patterns = [
 
 function defaultCategories() {
   return [
-    { id: "c0", label: "Wohnen & Nebenkosten", amount: "" },
-    { id: "c1", label: "Lebenshaltung & Essen", amount: "" },
-    { id: "c2", label: "Mobilität", amount: "" },
-    { id: "c3", label: "Versicherungen", amount: "" },
-    { id: "c4", label: "Freizeit, Abos & Shopping", amount: "" },
-    { id: "c5", label: "Sonstiges / „weiß ich gar nicht so genau“", amount: "" }
+    { id: "c0", label: "Wohnen & Nebenkosten", amount: "", type: "fix", locked: true },
+    { id: "c1", label: "Lebenshaltung & Essen", amount: "", type: "variable", locked: true },
+    { id: "c2", label: "Mobilität", amount: "", type: "variable", locked: true },
+    { id: "c3", label: "Versicherungen", amount: "", type: "fix", locked: true },
+    { id: "c4", label: "Abos & Sonstiges", amount: "", type: "variable", locked: true },
+    { id: "c5", label: "Sparen & Investieren", amount: "", type: "save", locked: true },
+    { id: "c6", label: "Spaßkonto", amount: "", type: "fun", locked: true }
   ];
 }
 
-let state = {
-  screen: 0,
-  selected: new Set(),
-  income: "",
-  categories: defaultCategories(),
-  nextCategoryId: 6
-};
+function typeLabel(type) {
+  return { fix: "Fix", variable: "Variabel", save: "Sparen", fun: "Spaß" }[type] || type;
+}
+
+function freshState() {
+  return {
+    screen: 0,
+    selected: new Set(),
+    noneSelected: false,
+    customPattern: "",
+    income: "",
+    categories: defaultCategories(),
+    nextCategoryId: 7,
+    reflectionNote: ""
+  };
+}
+
+let state = freshState();
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
 
 function render() {
   const app = document.getElementById("app");
@@ -248,29 +341,40 @@ function render() {
   if (state.screen === 0) renderStart(app);
   else if (state.screen === 1) renderCheck(app);
   else if (state.screen === 2) renderPatternResult(app);
-  else if (state.screen === 3) renderMoney(app);
-  else if (state.screen === 4) renderMoneyResult(app);
-  else if (state.screen === 5) renderSummary(app);
-}
-
-function renderStart(app) {
-  app.innerHTML = `
-    <div class="headline">Money Mindset Check</div>
-    <div class="subhead">2 Minuten. Ehrlich zu dir selbst. Nichts wird gespeichert oder irgendwohin geschickt — das hier ist nur für dich.</div>
-    <button class="btn" onclick="goTo(1)">Los geht's</button>
-  `;
+  else if (state.screen === 3) renderBudgetIntro(app);
+  else if (state.screen === 4) renderMoney(app);
+  else if (state.screen === 5) renderMoneyResult(app);
+  else if (state.screen === 6) renderSummary(app);
 }
 
 function backLink(targetScreen) {
   return `<button class="back-link" onclick="goTo(${targetScreen})">← Zurück</button>`;
 }
 
+function renderStart(app) {
+  app.innerHTML = `
+    <div class="eyebrow">Money Mindset Check</div>
+    <div class="hook">Was hält dich <span class="accent">wirklich</span> vom Sparen ab?</div>
+    <div class="sub">In ein paar Minuten siehst du dein Money Mindset — und was das für deine Zahlen bedeutet.</div>
+    <div class="stepper">
+      <div class="stepper-chip"><span class="chip-icon">🧠</span><span class="chip-label">Mindset</span></div>
+      <div class="stepper-chip"><span class="chip-icon">💶</span><span class="chip-label">Zahlen</span></div>
+      <div class="stepper-chip"><span class="chip-icon">✨</span><span class="chip-label">Ergebnis</span></div>
+    </div>
+    <div class="insight-card accent-sage">
+      <div class="insight-label">🔒 Nur für dich</div>
+      <div class="insight-body">Nichts wird gespeichert oder irgendwohin übertragen. Alles läuft nur in diesem Browser-Tab — schließt du die Seite, ist alles weg.</div>
+    </div>
+    <button class="btn" onclick="goTo(1)">Los geht's</button>
+  `;
+}
+
 function renderCheck(app) {
   const html = `
     ${backLink(0)}
     <div class="progress"><div class="progress-fill" style="width:100%"></div></div>
-    <div class="headline" style="font-size:24px;">Was kennst du bei dir?</div>
-    <div class="subhead">Tippe an, was du bei dir wiedererkennst. Es gibt kein richtig oder falsch — und niemand außer dir sieht das Ergebnis.</div>
+    <div class="headline">Was kennst du bei dir?</div>
+    <div class="sub">Tippe an, was du bei dir wiedererkennst. Es gibt kein richtig oder falsch — und niemand außer dir sieht das Ergebnis.</div>
     <div>
       ${patterns.map((p, i) => `
         <div class="item ${state.selected.has(i) ? 'selected' : ''}" onclick="toggle(${i})">
@@ -278,6 +382,14 @@ function renderCheck(app) {
           <div>${p.stmt}</div>
         </div>
       `).join("")}
+      <div class="item none-item ${state.noneSelected ? 'selected' : ''}" onclick="toggleNone()">
+        <div class="dot"></div>
+        <div>Nichts davon trifft aktuell auf mich zu.</div>
+      </div>
+    </div>
+    <div class="field" style="margin-top:18px;">
+      <label>Oder hast du dein eigenes Muster erkannt? Trag es gern hier ein (optional):</label>
+      <input type="text" placeholder="z.B. Ich spare nur für andere, nie für mich selbst" value="${escapeHtml(state.customPattern)}" oninput="updateCustomPattern(this.value)">
     </div>
     <button class="btn" onclick="goTo(2)">Weiter</button>
   `;
@@ -285,15 +397,28 @@ function renderCheck(app) {
 }
 
 function toggle(i) {
-  if (state.selected.has(i)) state.selected.delete(i);
-  else state.selected.add(i);
+  if (state.selected.has(i)) {
+    state.selected.delete(i);
+  } else {
+    state.selected.add(i);
+    state.noneSelected = false;
+  }
   render();
 }
 
+function toggleNone() {
+  state.noneSelected = !state.noneSelected;
+  if (state.noneSelected) state.selected.clear();
+  render();
+}
+
+function updateCustomPattern(v) { state.customPattern = v; }
+
 function renderPatternResult(app) {
   const count = state.selected.size;
+  const hasCustom = state.customPattern.trim().length > 0;
   let intro = "";
-  if (count === 0) {
+  if (count === 0 && !hasCustom) {
     intro = `<div class="note">Kein einziges Muster hat sich für dich gerade angefühlt wie du — das darf so sein. Schau gern in ein paar Wochen nochmal rein.</div>`;
   } else if (count <= 3) {
     intro = `<div class="note">Das sind die Muster, die du gerade bei dir erkennst. Interessant ist oft weniger die Anzahl — sondern welche es genau sind.</div>`;
@@ -309,21 +434,58 @@ function renderPatternResult(app) {
     </div>`;
   }).join("");
 
+  const customCard = hasCustom ? `<div class="pattern-card">
+    <div class="name">Dein eigenes Muster</div>
+    <div class="meaning">„${escapeHtml(state.customPattern.trim())}“</div>
+  </div>` : "";
+
   app.innerHTML = `
     ${backLink(1)}
-    <div class="headline" style="font-size:26px;">Deine Muster gerade</div>
+    <div class="headline">Deine Muster gerade</div>
     ${intro}
     ${cards}
-    <div class="note" style="background:#fff; border-color:#e3ddd0;">Du bist nicht schuld — dein Gehirn ist so gebaut, durch Prägung, Kultur und Evolution. Aber du kannst diese Muster verändern, sobald du sie siehst.</div>
+    ${customCard}
+    <div class="insight-card accent-sage">
+      <div class="insight-label">Wichtig zu wissen</div>
+      <div class="insight-body">Du bist nicht schuld — dein Gehirn ist so gebaut, durch Prägung, Kultur und Evolution. Aber du kannst diese Muster verändern, sobald du sie siehst.</div>
+    </div>
     <button class="btn" onclick="goTo(3)">Weiter zu deinen Zahlen</button>
+  `;
+}
+
+function renderBudgetIntro(app) {
+  app.innerHTML = `
+    ${backLink(2)}
+    <div class="eyebrow">Bevor es losgeht</div>
+    <div class="hook">Zahlen lügen nicht.</div>
+    <div class="sub">Dein Money Mindset zeigt sich nirgends deutlicher als in deinem Kontostand.</div>
+    <div class="insight-card">
+      <div class="insight-label">🔍 Einmal im Monat reicht</div>
+      <div class="insight-body">Ein Überblick über Einnahmen und Ausgaben zeigt, wo dein Geld wirklich hinfließt — nicht nur, wo du vermutest, dass es hinfließt. <strong>10–15 Minuten einmal im Monat</strong> reichen meist, um zu sehen, was sich verändert.</div>
+    </div>
+    <div class="quote-card">
+      <div class="context">Das Prinzip dahinter</div>
+      <blockquote>„<strong>Pay yourself first</strong> — überweise das, was übrig bleibt, direkt zu Monatsbeginn automatisch auf ein separates Spar- oder Anlagekonto. Nicht das, was zufällig am Monatsende noch da ist, sondern ein fester Betrag, der zuerst geht.“</blockquote>
+    </div>
+    <div class="compare-card">
+      <div class="compare-title">Vier Töpfe im Überblick</div>
+      <div class="compare-sub">Gleich sortierst du deine Zahlen in diese vier Kategorien ein:</div>
+      <div class="bucket-list">
+        <div class="bucket-item"><span class="bucket-icon">🏠</span><div class="bucket-text"><strong>Fixkosten</strong> — bleibt jeden Monat gleich: Miete, Versicherungen, Abos.</div></div>
+        <div class="bucket-item"><span class="bucket-icon">🛒</span><div class="bucket-text"><strong>Variable Kosten</strong> — schwankt von Monat zu Monat: Lebenshaltung, Mobilität, Sonstiges.</div></div>
+        <div class="bucket-item"><span class="bucket-icon">🌱</span><div class="bucket-text"><strong>Sparen & Investieren</strong> — geht zuerst weg, bevor es für Ausgaben zur Verfügung steht.</div></div>
+        <div class="bucket-item"><span class="bucket-icon">🎉</span><div class="bucket-text"><strong>Spaßkonto</strong> — Geld, das bewusst und ohne schlechtes Gewissen für Freude ausgegeben wird: Kino, Hobbys, spontane Extras. Der Gedanke dahinter: Sparen soll sich nicht wie Verzicht anfühlen.</div></div>
+      </div>
+    </div>
+    <button class="btn" onclick="goTo(4)">Weiter zu meinen Zahlen</button>
   `;
 }
 
 function renderMoney(app) {
   app.innerHTML = `
-    ${backLink(2)}
-    <div class="headline" style="font-size:24px;">Deine Zahlen</div>
-    <div class="subhead">Nirgends zeigt sich Money Mindset deutlicher als in den eigenen Zahlen. Kurzer Check — grobe Schätzung reicht. Passe die Kategorien gern an deine Situation an.</div>
+    ${backLink(3)}
+    <div class="headline">Deine Zahlen</div>
+    <div class="sub">Nirgends zeigt sich Money Mindset deutlicher als in den eigenen Zahlen. Kurzer Check — grobe Schätzung reicht. Passe die Kategorien gern an deine Situation an und ordne sie einem der vier Töpfe von eben zu.</div>
     <div class="field">
       <label>Monatliches Nettoeinkommen</label>
       <input type="number" min="0" placeholder="z.B. 2500" id="income-input" value="${state.income}" oninput="updateIncome(this.value)">
@@ -331,8 +493,18 @@ function renderMoney(app) {
     ${state.categories.map(c => `
       <div class="field category-row">
         <div class="category-row-top">
-          <input type="text" class="cat-label-input" placeholder="Kategorie" value="${c.label}" oninput="updateCategoryLabel('${c.id}', this.value)">
+          <input type="text" class="cat-label-input" placeholder="Kategorie" value="${escapeHtml(c.label)}" oninput="updateCategoryLabel('${c.id}', this.value)">
           <button class="remove-btn" title="Kategorie entfernen" onclick="removeCategory('${c.id}')">×</button>
+        </div>
+        <div class="type-toggle">
+          ${c.locked
+            ? `<span class="type-pill active locked" title="Fest zugeordnet">${typeLabel(c.type)}</span>`
+            : `
+              <button class="type-pill ${c.type === 'fix' ? 'active' : ''}" onclick="updateCategoryType('${c.id}','fix')">Fix</button>
+              <button class="type-pill ${c.type === 'variable' ? 'active' : ''}" onclick="updateCategoryType('${c.id}','variable')">Variabel</button>
+              <button class="type-pill ${c.type === 'save' ? 'active' : ''}" onclick="updateCategoryType('${c.id}','save')">Sparen</button>
+              <button class="type-pill ${c.type === 'fun' ? 'active' : ''}" onclick="updateCategoryType('${c.id}','fun')">Spaß</button>
+            `}
         </div>
         <input type="number" min="0" placeholder="0" id="expense-${c.id}" value="${c.amount}" oninput="updateCategoryAmount('${c.id}', this.value)">
       </div>
@@ -342,7 +514,7 @@ function renderMoney(app) {
       <div class="label">Rest am Monatsende</div>
       <div class="big" id="rest-display">${calcRest()} €</div>
     </div>
-    <button class="btn" onclick="goTo(4)">Zeig mir mein Ergebnis</button>
+    <button class="btn" onclick="goTo(5)">Zeig mir mein Ergebnis</button>
   `;
 }
 
@@ -361,8 +533,13 @@ function updateCategoryLabel(id, v) {
   const cat = state.categories.find(c => c.id === id);
   if (cat) cat.label = v;
 }
+function updateCategoryType(id, type) {
+  const cat = state.categories.find(c => c.id === id);
+  if (cat) cat.type = type;
+  render();
+}
 function addCategory() {
-  state.categories.push({ id: "c" + state.nextCategoryId, label: "", amount: "" });
+  state.categories.push({ id: "c" + state.nextCategoryId, label: "", amount: "", type: "variable", locked: false });
   state.nextCategoryId++;
   render();
 }
@@ -374,6 +551,14 @@ function removeCategory(id) {
 function sumExpenses() {
   return state.categories.reduce((sum, c) => sum + (parseFloat(c.amount) || 0), 0);
 }
+function sumByType(type) {
+  return state.categories.filter(c => c.type === type).reduce((sum, c) => sum + (parseFloat(c.amount) || 0), 0);
+}
+function biggestCategory(type) {
+  const cats = state.categories.filter(c => c.type === type && (parseFloat(c.amount) || 0) > 0);
+  if (!cats.length) return null;
+  return cats.reduce((max, c) => (parseFloat(c.amount) || 0) > (parseFloat(max.amount) || 0) ? c : max);
+}
 function calcRest() {
   const income = parseFloat(state.income) || 0;
   return Math.round(income - sumExpenses());
@@ -382,48 +567,131 @@ function calcRest() {
 function renderMoneyResult(app) {
   const income = parseFloat(state.income) || 0;
   const rest = calcRest();
-  const sonstigesCat = state.categories.find(c => c.label.toLowerCase().includes("sonstig"));
-  const sonstiges = sonstigesCat ? (parseFloat(sonstigesCat.amount) || 0) : 0;
-  const sonstigesPct = income > 0 ? (sonstiges / income) * 100 : 0;
-  const restPct = income > 0 ? (rest / income) * 100 : 0;
+  const fixSum = sumByType("fix");
+  const varSum = sumByType("variable");
+  const saveSum = sumByType("save");
+  const funSum = sumByType("fun");
+  const fixPct = income > 0 ? Math.round((fixSum / income) * 100) : null;
+  const varPct = income > 0 ? Math.round((varSum / income) * 100) : null;
+  const savePct = income > 0 ? Math.round((saveSum / income) * 100) : null;
+  const funPct = income > 0 ? Math.round((funSum / income) * 100) : null;
+  const restPctRaw = income > 0 ? (rest / income) * 100 : 0;
 
-  let hint = "";
-  if (sonstigesCat && sonstigesPct >= 10) {
-    hint = `Auffällig: „${sonstigesCat.label}“ macht bei dir ${Math.round(sonstigesPct)}% deiner Ausgaben aus. Genau hier versteckt sich bei vielen das größte Sparpotenzial — nicht weil schlecht gewirtschaftet wird, sondern weil dieser Posten selten bewusst wahrgenommen wird.`;
-  } else if (rest < 0) {
-    hint = `Bei dir bleibt rechnerisch gerade nichts übrig oder es fehlt sogar etwas. Das ist eine Zahl, kein Urteil — sie zeigt nur, wo ein genauerer Blick sich lohnen könnte.`;
-  } else if (restPct >= 10) {
-    hint = `Am Monatsende bleibt dir rechnerisch ein spürbarer Betrag. Die Frage, die sich viele hier stellen: Wohin geht dieser Betrag aktuell — und wohin könnte er gehen?`;
-  } else {
-    hint = `Deine Zahlen sind gerade recht ausgeglichen. Ein Blick in ein paar Monaten kann zeigen, ob sich das über die Zeit verändert.`;
+  const topVariable = biggestCategory("variable");
+  const topVariablePct = topVariable && income > 0 ? (parseFloat(topVariable.amount) / income) * 100 : 0;
+
+  let spendingInsight = "";
+  if (topVariable && topVariablePct >= 8) {
+    spendingInsight = `<div class="insight-card">
+      <div class="insight-label">🔍 Größte variable Position</div>
+      <div class="insight-body"><strong>„${escapeHtml(topVariable.label)}“</strong> macht bei dir ${Math.round(topVariablePct)}% deines Einkommens aus. Variable Posten wie dieser sind oft der Ort mit dem größten Sparpotenzial — gerade weil sie selten bewusst wahrgenommen werden.</div>
+    </div>`;
+  }
+
+  let restInsight = "";
+  if (rest < 0) {
+    restInsight = `<div class="insight-card accent-blush">
+      <div class="insight-label">Nicht verplantes Geld</div>
+      <div class="insight-body">Bei dir bleibt rechnerisch gerade nichts übrig oder es fehlt sogar etwas — auch wenn Sparen und Spaßkonto oben schon mitgezählt sind. Das ist eine Zahl, kein Urteil — sie zeigt nur, wo ein genauerer Blick sich lohnen könnte.</div>
+    </div>`;
+  } else if (restPctRaw >= 10) {
+    restInsight = `<div class="insight-card accent-blush">
+      <div class="insight-label">Nicht verplantes Geld</div>
+      <div class="insight-body">Zusätzlich zu dem, was du oben schon fürs Sparen oder dein Spaßkonto eingeplant hast, bleibt dir rechnerisch noch ein spürbarer Betrag übrig. Die Frage, die sich viele hier stellen: Wohin geht dieser Betrag aktuell — und wohin könnte er gehen?</div>
+    </div>`;
+  } else if (income > 0) {
+    restInsight = `<div class="insight-card accent-blush">
+      <div class="insight-label">Nicht verplantes Geld</div>
+      <div class="insight-body">Deine Zahlen sind gerade recht ausgeglichen — dein Geld ist weitgehend verplant. Ein Blick in ein paar Monaten kann zeigen, ob sich das über die Zeit verändert.</div>
+    </div>`;
+  }
+
+  const versicherungCat = state.categories.find(c => c.label.toLowerCase().includes("versicherung"));
+  const versicherungAmount = versicherungCat ? (parseFloat(versicherungCat.amount) || 0) : 0;
+  let haftpflichtHint = "";
+  if (!versicherungCat || versicherungAmount === 0) {
+    haftpflichtHint = `<div class="insight-card accent-sage">
+      <div class="insight-label">🛡️ Basis-Schutz</div>
+      <div class="insight-body">Dir ist aktuell keine Versicherungs-Ausgabe eingetragen. Eine Privathaftpflichtversicherung ist in Deutschland zwar nicht gesetzlich vorgeschrieben (anders als z. B. die Kfz-Haftpflicht) — sie gilt bei Verbraucherschützern aber als einer der wichtigsten Basis-Schutzbausteine, weil sie vor unbegrenzten Schadensersatzforderungen durch eigenes Verschulden schützt. Kosten liegen oft bei nur 50–120 €/Jahr.</div>
+    </div>`;
   }
 
   let bridge = "";
   if (state.selected.size > 0) {
     const firstPattern = patterns[[...state.selected][0]];
-    bridge = `<div class="note">Erinnerst du dich an <strong>${firstPattern.name}</strong> von eben? Schau nochmal auf deine Zahlen oben — zeigt sich das Muster hier vielleicht auch?</div>`;
+    bridge = `<div class="insight-card accent-sage">
+      <div class="insight-label">🧠 Zurück zum Mindset</div>
+      <div class="insight-body">Erinnerst du dich an <strong>${firstPattern.name}</strong> von eben? Schau nochmal auf deine Zahlen oben — zeigt sich das Muster hier vielleicht auch?</div>
+    </div>`;
+  } else if (state.customPattern.trim()) {
+    bridge = `<div class="insight-card accent-sage">
+      <div class="insight-label">🧠 Zurück zum Mindset</div>
+      <div class="insight-body">Erinnerst du dich an dein eigenes Muster von eben — „${escapeHtml(state.customPattern.trim())}“? Schau nochmal auf deine Zahlen oben — zeigt sich das hier vielleicht auch?</div>
+    </div>`;
   }
 
   app.innerHTML = `
-    ${backLink(3)}
-    <div class="headline" style="font-size:26px;">Deine Zahlen im Blick</div>
+    ${backLink(4)}
+    <div class="headline">Deine Zahlen im Blick</div>
     <div class="calc-box">
       <div class="label">Rest am Monatsende</div>
       <div class="big">${rest} €</div>
     </div>
-    <div class="note">${hint}</div>
+
+    <div class="compare-card">
+      <div class="compare-title">Wie du im Vergleich stehst</div>
+      <div class="compare-sub">Eine Orientierung — u. a. an Bodo Schäfers Konten-Modell angelehnt. Kein Muss, eher ein Vergleichspunkt zu deinen eigenen Zahlen.</div>
+      <div class="compare-head-row"><span>Kategorie</span><span>Empfehlung</span><span>Bei dir</span></div>
+      <div class="compare-row">
+        <span class="cat-name">Fixkosten</span>
+        <span class="target-val">50–60%</span>
+        <span class="own-val">${fixPct !== null ? fixPct + "%" : "–"}<span class="own-sub">${Math.round(fixSum)} €</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cat-name">Sparen & Investieren</span>
+        <span class="target-val">10–20%</span>
+        <span class="own-val">${savePct !== null ? savePct + "%" : "–"}<span class="own-sub">${Math.round(saveSum)} €</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cat-name">Variable Kosten</span>
+        <span class="target-val">20–30%</span>
+        <span class="own-val">${varPct !== null ? varPct + "%" : "–"}<span class="own-sub">${Math.round(varSum)} €</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="cat-name">Spaßkonto</span>
+        <span class="target-val">5–10%</span>
+        <span class="own-val">${funPct !== null ? funPct + "%" : "–"}<span class="own-sub">${Math.round(funSum)} €</span></span>
+      </div>
+    </div>
+
+    ${spendingInsight}
+    ${restInsight}
+
+    <div class="insight-card accent-blush">
+      <div class="insight-label">Zum Weiterdenken</div>
+      <div class="insight-body">Variable Kosten lassen sich meist kurzfristiger anpassen als Fixkosten. Welche variablen Ausgaben könntest du reduzieren, wenn du mehr sparen möchtest?</div>
+    </div>
+    <div class="field">
+      <textarea rows="3" placeholder="Deine Gedanken dazu (optional, wird nicht gespeichert)..." oninput="updateReflectionNote(this.value)">${escapeHtml(state.reflectionNote)}</textarea>
+    </div>
+
+    ${haftpflichtHint}
     ${bridge}
-    <button class="btn" onclick="goTo(5)">Weiter</button>
+    <button class="btn" onclick="goTo(6)">Weiter</button>
   `;
 }
 
+function updateReflectionNote(v) { state.reflectionNote = v; }
+
 function renderSummary(app) {
   const rest = calcRest();
-  const patternNames = [...state.selected].map(i => patterns[i].name).join(", ") || "Keine erkannten Muster";
+  const patternNames = [...state.selected].map(i => patterns[i].name);
+  if (state.customPattern.trim()) patternNames.push(state.customPattern.trim());
+  const patternText = patternNames.length ? patternNames.map(escapeHtml).join(", ") : "Keine erkannten Muster";
   app.innerHTML = `
-    ${backLink(4)}
-    <div class="headline" style="font-size:26px;">Das nimmst du mit</div>
-    <div class="summary-line"><span>Erkannte Muster</span><span>${patternNames}</span></div>
+    ${backLink(5)}
+    <div class="headline">Das nimmst du mit</div>
+    <div class="summary-line"><span>Erkannte Muster</span><span>${patternText}</span></div>
     <div class="summary-line"><span>Rest am Monatsende</span><span>${rest} €</span></div>
     <div class="note">Das hier ist eine Momentaufnahme, kein Urteil über dich. Wenn du tiefer einsteigen möchtest — Reframes, kleine Schritte, echtes Verändern deiner Muster — das gibt es im Coaching-Modul in der Finbrave App.</div>
     <div class="center">
@@ -434,10 +702,11 @@ function renderSummary(app) {
   `;
 }
 
-function goTo(screen) { state.screen = screen; render(); }
+function goTo(screen) { state.screen = screen; render(); window.scrollTo(0, 0); }
 function reset() {
-  state = { screen: 0, selected: new Set(), income: "", categories: defaultCategories(), nextCategoryId: 6 };
+  state = freshState();
   render();
+  window.scrollTo(0, 0);
 }
 
 render();
